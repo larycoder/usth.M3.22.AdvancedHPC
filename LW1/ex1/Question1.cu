@@ -24,10 +24,10 @@ void Exercise::Question1(
         // TODO: move data to DEVICE
         thrust::device_vector<int> dA = A;
         thrust::device_vector<int> dB = B;
+        thrust::device_vector<int> dC(m_size);
         chrUp.stop();
         chrCalc.start();
         // TODO: DO the map
-        thrust::device_vector<int> dC(m_size);
         thrust::transform(
                 dA.begin(), dA.end(),
                 dB.begin(),
