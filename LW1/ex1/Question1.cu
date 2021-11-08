@@ -2,7 +2,7 @@
 #include <include/chronoGPU.hpp>
 #include <thrust/device_vector.h>
 
-namespace func {
+namespace quest1 {
     /// function that adds two elements and return a new one
     class AddFunctor : public thrust::binary_function<int, int, int> {
     public:
@@ -22,8 +22,8 @@ void Exercise::Question1(
     for (int i = 3; i--;) {
         chrUp.start();
         // TODO: move data to DEVICE
-        const thrust::device_vector<int> dA = A;
-        const thrust::device_vector<int> dB = B;
+        thrust::device_vector<int> dA = A;
+        thrust::device_vector<int> dB = B;
         chrUp.stop();
         chrCalc.start();
         // TODO: DO the map
@@ -32,7 +32,7 @@ void Exercise::Question1(
                 dA.begin(), dA.end(),
                 dB.begin(),
                 dC.begin(),
-                func::AddFunctor());
+                quest1::AddFunctor());
         chrCalc.stop();
         chrDown.start();
         // TODO: move data to HOST

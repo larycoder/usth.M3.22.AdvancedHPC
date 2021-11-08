@@ -2,7 +2,7 @@
 #include <include/chronoGPU.hpp>
 #include <thrust/device_vector.h>
 
-namespace func{
+namespace quest2 {
 	/// function that adds two elements and return a new one
     class AddFunctor : public thrust::binary_function<int, int, int> {
     public:
@@ -30,7 +30,7 @@ void Exercise::Question2(thrust::host_vector<int>&A) const
                 constIter, constIter + m_size,
                 countIter,
                 dA.begin(),
-                func::AddFunctor());
+                quest2::AddFunctor());
 		chrCalc.stop();
 		chrDown.start();
 		// TODO: Move Data to HOST
