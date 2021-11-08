@@ -39,7 +39,7 @@ ENDIF()
 
 # Need to put manually all the inputs, else MOC will fail :-(
 add_executable(exercise1
-    Question1.cu Question2.cu Question3.cu Exercise.hpp main.cpp
+    Question1.cu Question2.cu Question3.cu Exercise.hpp main.cu
     ../include/chronoCPU.cpp
     ../include/chronoCPU.hpp
     ../include/chronoGPU.cu
