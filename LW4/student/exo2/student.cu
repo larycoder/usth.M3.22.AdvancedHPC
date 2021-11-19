@@ -5,12 +5,14 @@
 #define SIZE_HISTO 256.f
 
 namespace {
-    struct Functor {
-        __device__
-        unsigned operator () (const float &data ) const {
-            return (unsigned) (data * SIZE_HISTO);
-        }
-    };
+    __global__
+    void computeHistogram(unsigned *out, float *in, unsigned size) {
+        unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;
+        if (tid >= size) return;
+        // compute histogram position
+        unsigned pos = in[tid] * SIZE_HISTO;
+        atomicAdd(&out[pos], 1u);
+    }
 }
 
 bool StudentWorkImpl::isImplemented() const {
@@ -24,7 +26,15 @@ void StudentWorkImpl::run_Histogram(
         const unsigned height
 ) {
     // TODO
-    OPP::CUDA::computeHistogram<float, unsigned, Functor>(
-            dev_value, dev_histogram, Functor()
-    );
+    const unsigned size = width * height;
+    dim3 threads((unsigned) SIZE_HISTO);
+    dim3 blocks((size + threads.x - 1) / threads.x);
+    /* clean histogram */
+    unsigned zero_array[(unsigned) SIZE_HISTO] = {0};
+    dev_histogram.copyFromHost(zero_array);
+
+    computeHistogram<<<blocks, threads>>>(
+            dev_histogram.getDevicePointer(),
+            dev_value.getDevicePointer(),
+            size);
 }
