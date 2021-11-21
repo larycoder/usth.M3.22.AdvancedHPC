@@ -15,7 +15,7 @@ project(${PROJECT_NAME} LANGUAGES CXX CUDA)
 include_directories(src student utils ${CUDA_SAMPLES_INC})
 # add specifics to UNIX (linux)
 IF(UNIX)
-    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --gpu-architecture=compute_52 --gpu-code=compute_52")
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --gpu-architecture=compute_30 --gpu-code=compute_30")
 ENDIF()
 
 # Need to put manually all the inputs, else MOC will fail :-(
