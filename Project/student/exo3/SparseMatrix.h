@@ -9,9 +9,12 @@
  */
 struct SparseValue 
 {
-    const double value; // immutable
-    const unsigned row; // immutable
-    const unsigned column; // immutable
+    /* since test use assigment operator, const attribute cause error */
+    // do not worry, student will keep in mind that vector values are const ;-)
+    double value; // immutable
+    unsigned row; // immutable
+    unsigned column; // immutable
+
     SparseValue() = delete;
     SparseValue(const SparseValue&) = default;
     SparseValue& operator=(const SparseValue&) = default;
@@ -29,6 +32,8 @@ struct SparseValue
  */
 class SparseMatrix
 {
+
+public:
     const unsigned m; // number of rows
     const unsigned n; // number of columns;
 
@@ -39,7 +44,6 @@ class SparseMatrix
     // the CSR row lookup; length is m 1
     OPP::CUDA::DeviceBuffer<unsigned> lookup;
 
-public:
     SparseMatrix() = delete;
     ~SparseMatrix() = default;
     SparseMatrix(const SparseMatrix&sm) : 

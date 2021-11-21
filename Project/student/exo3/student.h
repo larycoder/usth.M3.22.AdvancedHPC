@@ -9,14 +9,14 @@ class StudentWork3 : public StudentWork
 public:
 
 	// First question: just call the constructor.
-	// Student, you have to write the constructor ... 
-	SparseMatrix buildSparseMatrix(
-		const unsigned m,
-		const unsigned n,
-		const std::vector<SparseValue>& sparseValues
-	) {
-		return SparseMatrix(m, n, sparseValues);	
-	}
+	// Student, you have to write the constructor ...
+    SparseMatrix doQuestion1(
+            const unsigned m,
+            const unsigned n,
+            const std::vector<SparseValue>& sparseValues
+    ) {
+        return SparseMatrix(m, n, sparseValues);
+    }
 
 	// Question 2
 	OPP::CUDA::DeviceBuffer<double> doQuestion2(const SparseMatrix&matrix, const OPP::CUDA::DeviceBuffer<double>&vector) {
