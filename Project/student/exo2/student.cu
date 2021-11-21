@@ -208,7 +208,7 @@ namespace {
      */
     double computeDeterminant(DeviceBuffer<double> &matrix, const int size) {
         // TODO
-        SPP::GaussDet<double> gauss(matrix, size); // once time class - do not reuse it
+        SPP::GaussDet<double> gauss(matrix, size); // once times class - do not reuse it
         gauss.pivotToEchelon();
         gauss.printMatrix();
         return gauss.calDiagDet();
