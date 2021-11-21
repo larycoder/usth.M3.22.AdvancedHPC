@@ -4,7 +4,7 @@
 #include <helper_math.h>
 
 
-class StudentWork2 : public StudentWork1
+class StudentWork2 : public StudentWork
 {
 public:
 
